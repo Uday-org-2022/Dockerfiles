@@ -1,0 +1,12 @@
+FROM ubuntu:latest
+RUN echo "Run One Updated"
+RUN mkdir -p /app/uday
+WORKDIR /app/uday
+RUN  apt-get update -y && apt-get install unzip -y
+CMD echo "Echo From Image"
+CMD echo "Echo From Latest"
+RUN echo "RUN Three"
+ENV TEST testingENV
+ARG branch=develop
+LABEL branchname $branch
+#CMD date

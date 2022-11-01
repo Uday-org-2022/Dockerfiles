@@ -1,0 +1,14 @@
+#git
+FROM alpine/git as repo
+WORKDIR /app
+RUN git clone https://github.com/MithunTechnologiesDevOps/java-web-app-docker.git
+
+#MAVEN
+FROM maven:3.5-jdk-8-alpine as build
+WORKDIR /app
+COPY --from=repo /app/java-web-app-docker /app
+RUN mvn clean install
+
+#tomcat
+FROM tomcat:8.0.20-jre8
+COPY --from=build /app/target/java-web-app*.war /usr/local/tomcat/webapps/java-web-app.war
