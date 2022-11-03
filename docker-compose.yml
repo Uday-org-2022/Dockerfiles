@@ -1,0 +1,26 @@
+version: "3.1"
+
+services:
+   springapp:
+      image: uday745/spring-boot-mongo:2.0
+      ports:
+      - 8080:8080
+      networks:
+      - springappnetwork
+      container_name: springappcontainer
+
+   mongo:
+      image: mongo
+      volumes:
+      - my-ebs-volume:/data/db
+      networks:
+      - springappnetwork
+
+volumes:
+   my-ebs-volume:
+      external: true
+
+networks:
+   springappnetwork:
+      external: true
+
