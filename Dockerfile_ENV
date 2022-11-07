@@ -1,2 +1,2 @@
-FROM ubuntu
-ENTRYPOINT ["echo","FROM Dockerfile"]
+FROM centos:centos7
+ENTRYPOINT ["yum","-y","install","git"]
