@@ -1,0 +1,4 @@
+FROM busybox
+RUN mkdir /usr/src
+RUN echo "this is from parent" > /usr/src/base-parent.txt
+ONBUILD RUN echo "this is from child" > /usr/src/base-child.txt
